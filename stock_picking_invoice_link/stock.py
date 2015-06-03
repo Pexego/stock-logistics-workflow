@@ -55,7 +55,7 @@ class stock_picking(orm.Model):
 
     _columns = {
         'invoice_id': fields.many2one(
-            'account.invoice', 'Invoice', readonly=True),
+            'account.invoice', 'Invoice', readonly=False),
         'invoice_view_xmlid': fields.function(
             _get_invoice_view_xmlid, type='char', string="Invoice View XMLID",
             readonly=True),
@@ -67,7 +67,7 @@ class account_invoice(orm.Model):
 
     _columns = {
         'picking_ids': fields.one2many(
-            'stock.picking', 'invoice_id', 'Related Pickings', readonly=True,
+            'stock.picking', 'invoice_id', 'Related Pickings', readonly=False,
             help="Related pickings "
             "(only when the invoice has been generated from the picking)."),
     }
